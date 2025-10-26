@@ -2,6 +2,8 @@
 
 ![App Preview](https://imgix.cosmicjs.com/06b83600-ad75-11f0-8dcc-651091f6a7c0-photo-1460925895917-afdab827c52f-1760937856098.jpg?w=1200&h=300&fit=crop&auto=format,compress)
 
+🌐 **[View Live Website](https://acme-corp-website.cosmic.site)**
+
 A modern, sarcastic, and ridiculously good-looking company website built with Next.js 15 and Cosmic CMS. Because your business deserves better than another boring corporate site.
 
 ## ✨ Features
