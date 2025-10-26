@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Service } from '@/types'
 
 interface ServiceCardProps {
@@ -9,7 +10,10 @@ export default function ServiceCard({ service }: ServiceCardProps) {
   const category = service.metadata.category
   
   return (
-    <div className="bg-neutral rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border-2 border-transparent hover:border-accent">
+    <Link 
+      href={`/services/${service.slug}`}
+      className="block bg-neutral rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border-2 border-transparent hover:border-accent"
+    >
       {icon && (
         <div className="mb-6 rounded-lg overflow-hidden">
           <img
@@ -23,7 +27,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
       )}
       
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-2xl text-primary">
+        <h3 className="text-2xl text-primary font-bold">
           {service.metadata.service_name}
         </h3>
         {category && (
@@ -34,15 +38,19 @@ export default function ServiceCard({ service }: ServiceCardProps) {
       </div>
       
       <div 
-        className="text-gray-600 mb-6 prose prose-sm max-w-none"
+        className="text-gray-600 mb-6 prose prose-sm max-w-none line-clamp-3"
         dangerouslySetInnerHTML={{ __html: service.metadata.description }}
       />
       
       {service.metadata.pricing && (
-        <div className="text-accent font-bold text-lg">
+        <div className="text-accent font-bold text-lg mb-4">
           {service.metadata.pricing}
         </div>
       )}
-    </div>
+      
+      <div className="text-primary font-semibold hover:text-accent transition-colors">
+        Learn More →
+      </div>
+    </Link>
   )
 }

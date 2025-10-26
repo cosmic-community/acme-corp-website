@@ -29,6 +29,23 @@ export async function getServices() {
   }
 }
 
+// Fetch single service by slug
+export async function getServiceBySlug(slug: string) {
+  try {
+    const response = await cosmic.objects
+      .findOne({ type: 'services', slug })
+      .props(['id', 'title', 'slug', 'metadata'])
+      .depth(1)
+    
+    return response.object;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return null;
+    }
+    throw new Error('Failed to fetch service');
+  }
+}
+
 // Fetch all team members
 export async function getTeamMembers() {
   try {
