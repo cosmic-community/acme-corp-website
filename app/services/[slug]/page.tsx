@@ -4,12 +4,13 @@ import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { Service } from '@/types'
 
 // Generate static params for all services
 export async function generateStaticParams() {
   const services = await getServices()
   
-  return services.map((service) => ({
+  return services.map((service: Service) => ({
     slug: service.slug,
   }))
 }
