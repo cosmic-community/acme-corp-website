@@ -4,6 +4,10 @@
 
 A modern, sarcastic, and ridiculously good-looking company website built with Next.js 15 and Cosmic CMS. Because your business deserves better than another boring corporate site.
 
+## 🌐 Live Demo
+
+Check out the deployed website: **[https://acme-corp-website.cosmic.site](https://acme-corp-website.cosmic.site)**
+
 ## ✨ Features
 
 - 🎨 **Bold Brand Design** - Acme Corp's signature pink (#e32971), blue-gray (#86a3b0), and neon green (#00fd47) color scheme
