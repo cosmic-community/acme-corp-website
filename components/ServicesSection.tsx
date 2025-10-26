@@ -11,8 +11,11 @@ interface ServicesSectionProps {
 export default function ServicesSection({ services }: ServicesSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   
-  // Get unique categories
-  const categories = ['all', ...new Set(services.map(s => s.metadata.category?.key).filter(Boolean))]
+  // Get unique categories - filter out undefined and ensure type safety
+  const categoryKeys = services
+    .map(s => s.metadata.category?.key)
+    .filter((key): key is string => Boolean(key))
+  const categories = ['all', ...new Set(categoryKeys)]
   
   // Filter services by category
   const filteredServices = selectedCategory === 'all' 
