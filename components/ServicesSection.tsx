@@ -1,14 +1,17 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Service } from '@/types'
 import ServiceCard from '@/components/ServiceCard'
 
 interface ServicesSectionProps {
   services: Service[]
+  showViewAll?: boolean
+  limit?: number
 }
 
-export default function ServicesSection({ services }: ServicesSectionProps) {
+export default function ServicesSection({ services, showViewAll = false, limit }: ServicesSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   
   // Get unique categories - filter out undefined and ensure type safety
@@ -18,9 +21,14 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
   const categories = ['all', ...new Set(categoryKeys)]
   
   // Filter services by category
-  const filteredServices = selectedCategory === 'all' 
+  let filteredServices = selectedCategory === 'all' 
     ? services 
     : services.filter(s => s.metadata.category?.key === selectedCategory)
+  
+  // Apply limit if specified
+  if (limit && limit > 0) {
+    filteredServices = filteredServices.slice(0, limit)
+  }
   
   if (!services || services.length === 0) {
     return null
@@ -61,6 +69,18 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
             <ServiceCard key={service.id} service={service} />
           ))}
         </div>
+        
+        {/* View All Link */}
+        {showViewAll && (
+          <div className="text-center mt-12">
+            <Link 
+              href="/services"
+              className="inline-block px-8 py-4 bg-primary text-neutral font-bold rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              View All Services →
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )

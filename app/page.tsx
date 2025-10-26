@@ -18,9 +18,9 @@ export default async function HomePage() {
   return (
     <main className="min-h-screen bg-neutral">
       <Hero />
-      <ServicesSection services={services} />
-      <TeamSection team={team} />
-      <CaseStudiesSection caseStudies={caseStudies} />
+      <ServicesSection services={services} showViewAll={true} limit={6} />
+      <TeamSection team={team} showViewAll={true} limit={6} />
+      <CaseStudiesSection caseStudies={caseStudies} showViewAll={true} limit={4} />
       <TestimonialsSection testimonials={testimonials} />
       <ContactSection />
       <Footer />
